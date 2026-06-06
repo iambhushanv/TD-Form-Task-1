@@ -1,0 +1,105 @@
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="alert alert-primary mb-4 text-center">
+                    Student Registration Form
+                </h2>
+                <form #stdForm="ngForm" (ngSubmit)="onAdd()">
+
+                    <div class="form-group">
+                        <label for="fname">Full Name*</label>
+                        <input minlength="6" pattern="[A-Za-z ]+" #fname="ngModel" required ngModel name="fname"
+                            type="text" class="form-control">
+                        <strong class="text-danger" *ngIf="fname.touched && fname.hasError('required')">
+                            Full Name is a required field
+                        </strong>
+                        <strong class="text-danger" *ngIf="fname.dirty && fname.hasError('minlength')">
+                            Min length of Full Name should be
+                            {{fname.errors?.['minlength'].requiredLength}} and actual length is
+                            {{fname.errors?.['minlength'].actualLength}}
+                        </strong>
+                        <strong class="text-danger" *ngIf="fname.dirty && fname.hasError('pattern')">
+                            Please Enter valid Full Name
+                        </strong>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail*</label>
+                        <input #email="ngModel" required ngModel name="email"
+                            pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" type="text"
+                            class="form-control">
+                        <strong class="text-danger" *ngIf="email.touched  && email.hasError('required')">
+                            E-mail is required field
+                        </strong>
+                        <strong class="text-danger" *ngIf="email.dirty && email.hasError('pattern')">
+                            Please enter valid E-mail Id (abc@gmail.com)
+                        </strong>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="number">Mobile Number*</label>
+                        <input minlength="10" maxlength="10" pattern="^[0-9]+$" #number="ngModel" ngModel name="number"
+                            required="" type="text" class="form-control">
+                        <strong class="text-danger" *ngIf="number.touched && number.hasError('required')">
+                            Mobile Number is required field
+                        </strong>
+                        <strong class="text-danger" *ngIf="number.dirty && number.hasError('pattern')">
+                            Please enter valid Mobile Number.
+                        </strong>
+                        <strong class="text-danger" *ngIf="number.dirty && number.hasError('minlength')">
+                            Mobile number should have 10 digits but the actual length is
+                            {{number.errors?.['minlength'].actualLength}}
+                        </strong>
+                        <strong class="text-danger" *ngIf="number.dirty && number.hasError('maxlength')">
+                            Mobile number should have 10 digits but the actual length is
+                            {{number.errors?.['minlength'].actualLength}}
+                        </strong>
+                    </div>
+
+
+                    <div class="form-group ">
+                        <label class="mr-2" for="gender">Gender*</label>
+                        <div class="d-flex gap-3">
+                            <div class="mr-3" *ngFor="let g of genderArr">
+                                <input [id]="g" [(ngModel)]="defaultGender" [value]="g" required ngModel name="gender"
+                                    type="radio">
+                                <label [for]="g" class="ml-1">{{g}}</label>
+                            </div>
+                        </div>
+                    </div>    
+
+
+                        <div class="form-group">
+                            <label for="course">Course*</label>
+                            <select #course="ngModel" required ngModel class="form-control" name="course" id="course">
+                                <option *ngFor="let c of courseArr" value="c">{{c}}</option>
+                            </select>
+                            <strong class="text-danger" *ngIf="course.touched  && course.hasError('required')">
+                                Course is required field
+                            </strong>
+                        </div>
+                        <div class="form-group">
+                            <label for="adress">Address*</label>
+                            <input minlength="10" maxlength="25" #adress="ngModel" required ngModel name="adress"
+                                type="text" class="form-control">
+                            <strong class="text-danger" *ngIf="adress.touched  && adress.hasError('required')">
+                                Address is required field
+                            </strong>
+                            <strong class="text-danger" *ngIf="adress.dirty  && adress.hasError('minlength')">
+                                Min length of Address should be
+                                {{adress.errors?.['minlength'].requiredLength}} and actual length is
+                                {{adress.errors?.['minlength'].actualLength}}
+                            </strong>
+                        </div>
+                        <div class="form-group">
+                            <label for="terms">
+                                <input required ngModel name="terms" type="checkbox"> Accept Terms & Conditions
+                            </label>
+                        </div>
+                        <button class="btn btn-sm btn-block btn-primary">Register</button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
