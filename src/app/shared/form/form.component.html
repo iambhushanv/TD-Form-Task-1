@@ -67,39 +67,46 @@
                                 <label [for]="g" class="ml-1">{{g}}</label>
                             </div>
                         </div>
-                    </div>    
+                    </div>
 
 
-                        <div class="form-group">
-                            <label for="course">Course*</label>
-                            <select #course="ngModel" required ngModel class="form-control" name="course" id="course">
-                                <option *ngFor="let c of courseArr" value="c">{{c}}</option>
-                            </select>
-                            <strong class="text-danger" *ngIf="course.touched  && course.hasError('required')">
-                                Course is required field
-                            </strong>
-                        </div>
-                        <div class="form-group">
-                            <label for="adress">Address*</label>
-                            <input minlength="10" maxlength="25" #adress="ngModel" required ngModel name="adress"
-                                type="text" class="form-control">
-                            <strong class="text-danger" *ngIf="adress.touched  && adress.hasError('required')">
-                                Address is required field
-                            </strong>
-                            <strong class="text-danger" *ngIf="adress.dirty  && adress.hasError('minlength')">
-                                Min length of Address should be
-                                {{adress.errors?.['minlength'].requiredLength}} and actual length is
-                                {{adress.errors?.['minlength'].actualLength}}
-                            </strong>
-                        </div>
-                        <div class="form-group">
-                            <label for="terms">
-                                <input required ngModel name="terms" type="checkbox"> Accept Terms & Conditions
-                            </label>
-                        </div>
-                        <button class="btn btn-sm btn-block btn-primary">Register</button>
+                    <div class="form-group">
+                        <label for="course">Course*</label>
+                        <select #course="ngModel" required ngModel class="form-control" name="course" id="course">
+                            <option *ngFor="let c of courseArr" value="c">{{c}}</option>
+                        </select>
+                        <strong class="text-danger" *ngIf="course.touched  && course.hasError('required')">
+                            Course is required field
+                        </strong>
+                    </div>
+                    <div class="form-group">
+                        <label for="adress">Address*</label>
+                        <input minlength="10" maxlength="25" #adress="ngModel" required ngModel name="adress"
+                            type="text" class="form-control">
+                        <strong class="text-danger" *ngIf="adress.touched  && adress.hasError('required')">
+                            Address is required field
+                        </strong>
+                       
+                         <strong class="text-danger" *ngIf="adress.dirty  && adress.hasError('minlength')">
+                            Min length of Address should be
+                            {{adress.errors?.['minlength'].requiredLength}} and actual length is
+                            {{adress.errors?.['minlength'].actualLength}}
+                        </strong>
+                    
+                    </div>
+                    <div class="form-group">
+                        <label for="terms">
+                            <input #terms="ngModel" required ngModel name="terms" type="checkbox"> Accept Terms & Conditions
+                        </label>
+                       <div>
+                         <strong class="text-danger" *ngIf="terms.touched && terms.hasError('required')">
+                           Accept Terms & Conditions is required field
+                        </strong>
+                       </div>
+                    </div>
+                    <button class="btn btn-sm btn-block btn-primary">Register</button>
                 </form>
-            </div>
             </div>
         </div>
     </div>
+</div>
